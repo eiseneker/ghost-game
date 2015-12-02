@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TreeLayer : MonoBehaviour {
 
-	public float speed = .01f;
+	public float speed;
 	public static TreeLayer current;
 	
 	float pos = 0;
@@ -15,7 +15,7 @@ public class TreeLayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		pos += .003f;
+		pos += speed;
 		if(pos > 1.0f){
 			pos -= 1f;
 		}
