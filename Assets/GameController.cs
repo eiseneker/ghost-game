@@ -4,11 +4,13 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public static float playTime;
+	public static bool active;
 	private float baddySpawnTime;
 	private float foodSpawnTime;
 
 	// Use this for initialization
 	void Start () {
+		active = true;
 		playTime = 0;
 	}
 	
@@ -20,7 +22,7 @@ public class GameController : MonoBehaviour {
 		baddySpawnTime += Time.deltaTime;
 		
 		if(Tank.tank.health <= 0){
-//			ShowGameOver();
+			ShowGameOver();
 		}
 	}
 	
@@ -31,6 +33,8 @@ public class GameController : MonoBehaviour {
 	
 	
 	void ShowGameOver(){
+		active = false;
+		Time.timeScale = 0;
 		GameObject.Find ("HUD").transform.Find ("GameOver").gameObject.SetActive(true);
 	}
 	

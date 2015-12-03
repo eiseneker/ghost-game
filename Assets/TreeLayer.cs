@@ -15,7 +15,7 @@ public class TreeLayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		pos += speed;
+		pos += speed * Time.deltaTime * 20;
 		if(pos > 1.0f){
 			pos -= 1f;
 		}
