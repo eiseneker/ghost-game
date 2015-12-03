@@ -18,7 +18,7 @@ public class Aura : MonoBehaviour {
 	
 	void OnTriggerStay2D(Collider2D collider){
 		if(owner != null){
-			if(collider.GetComponent<Food>()){
+			if(collider.GetComponent<Food>() || collider.GetComponent<TreasureGhost>()){
 				MoveMe ();
 			}else if(collider.GetComponent<Baddie>()){
 				if(collider.GetComponent<Baddie>().gameObject != owner){

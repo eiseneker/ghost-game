@@ -12,8 +12,9 @@ public class Road : MonoBehaviour {
 	void Start () {
 		loadMarker = transform.Find ("LoadMarker").GetComponent<LoadMarker>();
 		loadMarker.road = this;
-		SpawnBaddies();
 		SpawnFoods();
+		SpawnTreasure();
+		SpawnBaddies();
 	}
 	
 	public void SpawnNewRoad(){
@@ -25,6 +26,16 @@ public class Road : MonoBehaviour {
 	
 	public void DestroyMe(){
 		Destroy(gameObject);
+	}
+	
+	void SpawnTreasure(){
+		if(Tank.foodMeter * .1f > Random.value){
+			Vector3 newPosition = transform.position;
+			float xFactor = XRange();
+			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;
+			newPosition.y = YRange ();
+			Instantiate (Resources.Load ("TreasureGhost"), newPosition, Quaternion.identity);
+		}
 	}
 	
 	void SpawnBaddies(){
@@ -43,7 +54,6 @@ public class Road : MonoBehaviour {
 			float xFactor = XRange();
 			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;
 			newPosition.y = YRange ();
-			print("spawning a baddie at " + newPosition);
 			Instantiate (Resources.Load ("Baddie"), newPosition, Quaternion.identity);
 		}
 	}

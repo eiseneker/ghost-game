@@ -79,4 +79,15 @@ public class Tank : MonoBehaviour {
 	private void UpdateFoodMeter(float value){
 		foodMeter = Mathf.Clamp (foodMeter + value, 0, 1);
 	}
+	
+	public void IncreaseLife(){
+		if(health == maxHealth){
+			if(maxHealth < 9){
+				maxHealth++;
+				health = maxHealth;
+			}
+		}else{
+			health = maxHealth;
+		}
+	}
 }

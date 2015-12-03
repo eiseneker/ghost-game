@@ -75,6 +75,7 @@
      <Compile Include="Assets\PointsHUD.cs" />
      <Compile Include="Assets\Road.cs" />
      <Compile Include="Assets\Tank.cs" />
+     <Compile Include="Assets\TreasureGhost.cs" />
      <Compile Include="Assets\TreeLayer.cs" />
      <Compile Include="Assets\UnloadMarker.cs" />
      <None Include="Assets\Endless2DTerrain\Demos\Resources\Shaders\VertexColorUnlit.shader" />
