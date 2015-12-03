@@ -69,6 +69,7 @@
      <Compile Include="Assets\Food.cs" />
      <Compile Include="Assets\FoodHUD.cs" />
      <Compile Include="Assets\GameController.cs" />
+     <Compile Include="Assets\HealthMeter.cs" />
      <Compile Include="Assets\LoadMarker.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
      <Compile Include="Assets\PointsHUD.cs" />

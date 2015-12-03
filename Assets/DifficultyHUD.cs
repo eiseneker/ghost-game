@@ -13,6 +13,6 @@ public class DifficultyHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = GameController.Difficulty().ToString ();
+		text.text = "Level " + GameController.Difficulty().ToString ();
 	}
 }

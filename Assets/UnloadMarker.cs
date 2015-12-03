@@ -3,6 +3,8 @@ using System.Collections;
 
 public class UnloadMarker : MonoBehaviour {
 
+	private int eliminated = 0;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -11,7 +13,7 @@ public class UnloadMarker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 position = Tank.tank.transform.position;
-		position.x -= 60;
+		position.x -= 10;
 		position.y = 0;
 		transform.position = position;
 	}
@@ -21,9 +23,15 @@ public class UnloadMarker : MonoBehaviour {
 		if(loadMarker){
 			loadMarker.DestroyMe();
 		}else{
-			Baddie Baddie = collider.GetComponent<Baddie>();
-			if(Baddie){
-				Baddie.DestroyMe();
+			Baddie baddie = collider.GetComponent<Baddie>();
+			if(baddie){
+				baddie.DestroyMe();
+			}
+			Food food = collider.GetComponent<Food>();
+			if(food){
+				eliminated++;
+				print ("eliminated: " + eliminated);
+				food.DestroyMe();
 			}
 		}
 	}

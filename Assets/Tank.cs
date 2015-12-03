@@ -14,10 +14,12 @@ public class Tank : MonoBehaviour {
 	private bool bufferBlue;
 	private float bufferDelay;
 	public int health = 3;
+	public int maxHealth = 3;
 	private float hitDelay;
 	private float lifeTime;
 	public static float foodMeter;
 	private Vector3 originalScale;
+	private float timeSinceLastEat;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +32,7 @@ public class Tank : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		timeSinceLastEat += Time.deltaTime;
 		hitDelay += Time.deltaTime;
 		pointsDelay += Time.deltaTime;
 		
@@ -51,9 +54,11 @@ public class Tank : MonoBehaviour {
 			myRigidBody.AddForce (new Vector2(0, 20));
 		}
 		
-		UpdateFoodMeter (-Time.deltaTime/50);
+		if(timeSinceLastEat > 2){
+			UpdateFoodMeter (-Time.deltaTime/50);
+		}
 		
-		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
+//		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
 		
 //		transform.localScale = new Vector3(originalScale.x + foodScale, originalScale.y + foodScale, originalScale.z);
 	}
@@ -67,10 +72,11 @@ public class Tank : MonoBehaviour {
 	
 	public void EatFood(){
 		points += 10;
-		UpdateFoodMeter (.2f);
+		UpdateFoodMeter (.01f);
+		timeSinceLastEat = 0;
 	}
 	
 	private void UpdateFoodMeter(float value){
-		foodMeter = Mathf.Clamp (foodMeter + value, .25f, 1);
+		foodMeter = Mathf.Clamp (foodMeter + value, 0, 1);
 	}
 }

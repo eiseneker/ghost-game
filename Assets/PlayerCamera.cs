@@ -12,8 +12,11 @@ public class PlayerCamera : MonoBehaviour {
 	
 	void LateUpdate () {
 		if(Tank.tank){
-			Vector3 destination = new Vector3(Tank.tank.transform.position.x + 3, transform.position.y, transform.position.z);
-			transform.position = destination;
+//			Vector3 destination = new Vector3(Tank.tank.transform.position.x + 3, transform.position.y, transform.position.z);
+//			transform.position = destination;
+
+			Vector3 destination = new Vector3(Tank.tank.transform.position.x + 5, transform.position.y, transform.position.z);
+			transform.position = Vector3.SmoothDamp(transform.position, destination, ref currentVelocity, 0.5f);
 		}
 	}
 	
