@@ -5,6 +5,9 @@ public class Road : MonoBehaviour {
 
 	private float SPAWN_CENTER_OFFSET = 33;
 	private float ROAD_LENGTH = 9.5f;
+	private ArrayList baddies = new ArrayList();
+	private float timeSinceBaddiesSpawned;
+	private bool baddiesSetInPlace;
 
 	LoadMarker loadMarker;
 
@@ -13,8 +16,21 @@ public class Road : MonoBehaviour {
 		loadMarker = transform.Find ("LoadMarker").GetComponent<LoadMarker>();
 		loadMarker.road = this;
 		SpawnFoods();
+		SpawnObstacles();
 		SpawnTreasure();
 		SpawnBaddies();
+	}
+	
+	void Update(){
+		timeSinceBaddiesSpawned += Time.deltaTime;
+		if(!baddiesSetInPlace && timeSinceBaddiesSpawned > 1){
+			if(baddies.Count > 0){
+				foreach(GameObject baddie in baddies){
+					if(baddie != null) baddie.GetComponent<Baddie>().aura.canBeMoved = false;
+				}
+				baddiesSetInPlace = true;
+			}
+		}
 	}
 	
 	public void SpawnNewRoad(){
@@ -54,8 +70,22 @@ public class Road : MonoBehaviour {
 			float xFactor = XRange();
 			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;
 			newPosition.y = YRange ();
-			Instantiate (Resources.Load ("Baddie"), newPosition, Quaternion.identity);
+			GameObject baddie = Instantiate (Resources.Load ("Baddie"), newPosition, Quaternion.identity) as GameObject;
+			baddies.Add (baddie);
 		}
+		timeSinceBaddiesSpawned = 0;
+	}
+	
+	void SpawnObstacles(){
+		if(Random.value > .7f){
+			int baddieCount = 0;
+			int difficulty = GameController.Difficulty ();
+			Vector3 newPosition = transform.position;
+			float xFactor = XRange();
+			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;
+			newPosition.y = 0;
+			GameObject baddie = Instantiate (Resources.Load ("ObstacleBear"), newPosition, Quaternion.identity) as GameObject;
+		}		
 	}
 	
 	void SpawnFoods(){

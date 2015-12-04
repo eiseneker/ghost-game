@@ -38,7 +38,7 @@ public class Tank : MonoBehaviour {
 		
 		myRigidBody.AddForce(new Vector2(10, 0));
 		
-		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 3);
+		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4);
 		
 		
 		if(pointsDelay > .2f){

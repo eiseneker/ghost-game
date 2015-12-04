@@ -71,11 +71,13 @@
      <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\HealthMeter.cs" />
      <Compile Include="Assets\LoadMarker.cs" />
+     <Compile Include="Assets\ObstacleBear.cs" />
      <Compile Include="Assets\PlayerCamera.cs" />
      <Compile Include="Assets\PointsHUD.cs" />
      <Compile Include="Assets\Road.cs" />
      <Compile Include="Assets\Tank.cs" />
      <Compile Include="Assets\TreasureGhost.cs" />
+     <Compile Include="Assets\TreasureReticle.cs" />
      <Compile Include="Assets\TreeLayer.cs" />
      <Compile Include="Assets\UnloadMarker.cs" />
      <None Include="Assets\Endless2DTerrain\Demos\Resources\Shaders\VertexColorUnlit.shader" />

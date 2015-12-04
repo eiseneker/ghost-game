@@ -5,6 +5,8 @@ public class Aura : MonoBehaviour {
 
 	public GameObject owner;
 	private int attempts;
+	private Aura movedBy;
+	public bool canBeMoved;
 
 	// Use this for initialization
 	void Start () {
@@ -18,17 +20,20 @@ public class Aura : MonoBehaviour {
 	
 	void OnTriggerStay2D(Collider2D collider){
 		if(owner != null){
-			if(collider.GetComponent<Food>() || collider.GetComponent<TreasureGhost>()){
-				MoveMe ();
-			}else if(collider.GetComponent<Baddie>()){
-				if(collider.GetComponent<Baddie>().gameObject != owner){
-					MoveMe ();	
+			if(collider.GetComponent<TreasureGhost>()){
+				MoveMe (null);
+			}else{
+				Aura aura = collider.GetComponent<Aura>();
+				if(aura && this.canBeMoved && aura.movedBy != this){
+					print ("moving " + owner.name);
+					MoveMe (aura);	
 				}
 			}
 		}
 	}
 	
-	void MoveMe(){
+	void MoveMe(Aura aura){
+		movedBy = aura;
 		if(attempts < 5){
 			Vector3 newPosition = owner.transform.position;
 			newPosition.y = Random.Range (-2f, 2f);

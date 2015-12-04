@@ -30,7 +30,6 @@ public class UnloadMarker : MonoBehaviour {
 			Food food = collider.GetComponent<Food>();
 			if(food){
 				eliminated++;
-				print ("eliminated: " + eliminated);
 				food.DestroyMe();
 			}
 		}
