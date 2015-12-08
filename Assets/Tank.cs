@@ -41,7 +41,7 @@ public class Tank : MonoBehaviour {
 		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4);
 		
 		
-		if(pointsDelay > .2f){
+		if(pointsDelay > .02f){
 			points += 1;
 			pointsDelay = 0;
 		}

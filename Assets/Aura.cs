@@ -25,7 +25,6 @@ public class Aura : MonoBehaviour {
 			}else{
 				Aura aura = collider.GetComponent<Aura>();
 				if(aura && this.canBeMoved && aura.movedBy != this){
-					print ("moving " + owner.name);
 					MoveMe (aura);	
 				}
 			}

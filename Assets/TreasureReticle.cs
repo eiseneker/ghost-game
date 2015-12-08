@@ -13,16 +13,19 @@ public class TreasureReticle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Vector3 newPosition = transform.position;
 		if(TreasureGhost.latestTreasure != null){
 			Vector3 translatedTeasurePosition = Camera.main.WorldToScreenPoint (TreasureGhost.latestTreasure.gameObject.transform.position);
 			if(translatedTeasurePosition.x > transform.position.x){
-				image.color = new Color(1, 1, 1, .5f);
-				Vector3 newPosition = transform.position;
+				print ("setting to position");
+				image.color = new Color(1, 0, 1, 1);
 				newPosition.y = translatedTeasurePosition.y;
-				gameObject.transform.position = newPosition;
+			}else{
+				newPosition.y = 5000;
 			}
 		}else{
-			image.color = new Color(0, 0, 0, 0);
+			newPosition.y = 5000;
 		}
+		gameObject.transform.position = newPosition;
 	}
 }
