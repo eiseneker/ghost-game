@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public static int Difficulty(){
-		int difficulty = Mathf.FloorToInt(Mathf.Clamp (playTime/10, 0, 10));
+		int difficulty = Mathf.FloorToInt(Mathf.Clamp (playTime/10, 0, 100));
 		return(difficulty);
 	}
 	

@@ -59,13 +59,14 @@ public class Road : MonoBehaviour {
 		int difficulty = GameController.Difficulty ();
 		
 		if(difficulty < 10){
-			baddieCount = difficulty;
+			baddieCount = difficulty + 2;
 		}else if (difficulty < 20){
-			baddieCount = 15;
+			baddieCount = 18;
 		}else{
-			baddieCount = 20;
+			baddieCount = 30;
 		}
 		for(int i = 0; i < baddieCount; i++){
+			print ("spawn baddie");
 			Vector3 newPosition = transform.position;
 			float xFactor = XRange();
 			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;
@@ -91,12 +92,15 @@ public class Road : MonoBehaviour {
 	void SpawnFoods(){
 		float initialCenter = SPAWN_CENTER_OFFSET + XRange ();
 		float lastY = YRange ();
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < 4; i++){
 			Vector3 newPosition = transform.position;
 			
 			newPosition.x += initialCenter + i;
 			lastY = Mathf.Clamp (Random.Range (lastY - .2f, lastY + .2f), -2f, 2f);
 			newPosition.y = lastY;
+
+//			newPosition.x += SPAWN_CENTER_OFFSET + XRange ();
+//			newPosition.y = YRange ();
 			Instantiate (Resources.Load ("Food"), newPosition, Quaternion.identity);
 		}
 	}

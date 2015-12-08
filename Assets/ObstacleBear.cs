@@ -21,6 +21,6 @@ public class ObstacleBear : MonoBehaviour {
 	}
 	
 	void Update(){
-		transform.Translate (Vector3.left * Time.deltaTime);
+		transform.Translate (Vector3.left * Time.deltaTime * 3);
 	}
 }

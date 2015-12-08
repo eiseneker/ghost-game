@@ -48,10 +48,10 @@ public class Tank : MonoBehaviour {
 		
 //		float newGravityScale = foodMeter/4;
 		
-		myRigidBody.gravityScale = 1f;
+		myRigidBody.gravityScale = 2f;
 		
 		if(Input.GetMouseButton(0)){
-			myRigidBody.AddForce (new Vector2(0, 20));
+			myRigidBody.AddForce (new Vector2(0, 50));
 		}
 		
 		if(timeSinceLastEat > 2){

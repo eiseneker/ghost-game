@@ -18,7 +18,7 @@ public class TreasureReticle : MonoBehaviour {
 			Vector3 translatedTeasurePosition = Camera.main.WorldToScreenPoint (TreasureGhost.latestTreasure.gameObject.transform.position);
 			if(translatedTeasurePosition.x > transform.position.x){
 				print ("setting to position");
-				image.color = new Color(1, 0, 1, 1);
+				image.color = new Color(1, 1, 1, 1);
 				newPosition.y = translatedTeasurePosition.y;
 			}else{
 				newPosition.y = 5000;
