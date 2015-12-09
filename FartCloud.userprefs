@@ -1,12 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Road.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Tank.cs">
     <Files>
       <File FileName="Assets/GameController.cs" Line="29" Column="68" />
-      <File FileName="Assets/Road.cs" Line="68" Column="20" />
+      <File FileName="Assets/Road.cs" Line="68" Column="1" />
       <File FileName="Assets/TreasureReticle.cs" Line="1" Column="1" />
       <File FileName="Assets/Aura.cs" Line="1" Column="1" />
-      <File FileName="Assets/Tank.cs" Line="54" Column="42" />
+      <File FileName="Assets/Tank.cs" Line="67" Column="3" />
+      <File FileName="Assets/ObstacleBear.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

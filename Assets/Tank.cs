@@ -20,6 +20,8 @@ public class Tank : MonoBehaviour {
 	public static float foodMeter;
 	private Vector3 originalScale;
 	private float timeSinceLastEat;
+	public float teleportCooldown;
+	public float maxTeleportCooldown = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,7 @@ public class Tank : MonoBehaviour {
 		points = 0;
 		originalScale = transform.localScale;
 		foodMeter = 0;
+		teleportCooldown = maxTeleportCooldown;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +41,6 @@ public class Tank : MonoBehaviour {
 		
 		myRigidBody.AddForce(new Vector2(10, 0));
 		
-		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4);
 		
 		
 		if(pointsDelay > .02f){
@@ -54,13 +56,52 @@ public class Tank : MonoBehaviour {
 			myRigidBody.AddForce (new Vector2(0, 50));
 		}
 		
+		if(Input.GetMouseButton(1)){
+			Teleport();
+		}
+		
 		if(timeSinceLastEat > 2){
 			UpdateFoodMeter (-Time.deltaTime/50);
 		}
 		
+		teleportCooldown += Time.deltaTime;
+		
+		Vector3 newPosition = transform.position;
+		
+//		if(transform.position.y < -3 && myRigidBody.velocity.y < 0){
+//			newPosition.y = 3;
+//		}else if(transform.position.y > 3 && myRigidBody.velocity.y > 0){
+//			newPosition.y = -3;
+//		}
+		
+		if(transform.position.y < -2.8f){
+			myRigidBody.AddForce (new Vector2(0, 50));
+		}else if(transform.position.y > 2.8f){
+			myRigidBody.AddForce (new Vector2(0, -50));
+		}
+		
+		transform.position = newPosition;
+		
+		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4);
+		
 //		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
 		
 //		transform.localScale = new Vector3(originalScale.x + foodScale, originalScale.y + foodScale, originalScale.z);
+	}
+	
+	void Teleport(){
+		if(teleportCooldown > maxTeleportCooldown){
+			Vector3 newPosition = transform.position;
+		
+			if(transform.position.y > 0){
+				newPosition.y -= 1.5f;
+			}else{
+				newPosition.y += 1.5f;
+			}
+			
+			transform.position = newPosition;
+			teleportCooldown = 0;
+		}
 	}
 	
 	public void TakeHit(){
