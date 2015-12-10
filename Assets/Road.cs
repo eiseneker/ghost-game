@@ -45,7 +45,7 @@ public class Road : MonoBehaviour {
 	}
 	
 	void SpawnTreasure(){
-		if(Tank.foodMeter * .1f > Random.value){
+		if(true || Tank.foodMeter * .1f > Random.value){
 			Vector3 newPosition = transform.position;
 			float xFactor = XRange();
 			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;

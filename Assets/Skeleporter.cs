@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Skeleporter : MonoBehaviour {
+public class Skeleporter : MonoBehaviour, IAbility {
 
 	public float maxAbilityCooldown = 2;
 	public float abilityCooldown;
@@ -31,5 +31,13 @@ public class Skeleporter : MonoBehaviour {
 			player.transform.position = newPosition;
 			abilityCooldown = 0;
 		}
+	}
+	
+	public void SetPlayer(Tank inputPlayer){
+		player = inputPlayer;
+	}
+	
+	public float CooldownRatio(){
+		return(abilityCooldown/maxAbilityCooldown);
 	}
 }

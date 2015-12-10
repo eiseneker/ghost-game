@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Stopwatch : MonoBehaviour {
+public class Stopwatch : MonoBehaviour, IAbility {
 	
 	public float maxAbilityCooldown = 2;
 	public float abilityCooldown;
@@ -18,7 +18,7 @@ public class Stopwatch : MonoBehaviour {
 	
 	void Update(){
 		effectTime += Time.deltaTime;
-		abilityCooldown += Time.deltaTime;
+		abilityCooldown += Time.deltaTime * GameController.actionTimeScale;
 		if(effectTime > maxEffectTime){
 			GameController.actionTimeScale = 1;
 		}
@@ -30,5 +30,13 @@ public class Stopwatch : MonoBehaviour {
 			abilityCooldown = 0;
 			effectTime = 0;
 		}
+	}
+	
+	public void SetPlayer(Tank inputPlayer){
+		player = inputPlayer;
+	}
+	
+	public float CooldownRatio(){
+		return(abilityCooldown/maxAbilityCooldown);
 	}
 }
