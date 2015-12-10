@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Tank : MonoBehaviour {
 
@@ -20,8 +21,7 @@ public class Tank : MonoBehaviour {
 	public static float foodMeter;
 	private Vector3 originalScale;
 	private float timeSinceLastEat;
-	public float teleportCooldown;
-	public float maxTeleportCooldown = 2;
+	private Skeleporter ability;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +30,15 @@ public class Tank : MonoBehaviour {
 		points = 0;
 		originalScale = transform.localScale;
 		foodMeter = 0;
-		teleportCooldown = maxTeleportCooldown;
+		GameObject abilityObject = Instantiate (Resources.Load ("Skeleporter"), transform.position, Quaternion.identity) as GameObject;
+		ability = abilityObject.GetComponent<Skeleporter>();
+		abilityObject.transform.parent = GameObject.Find ("HUD").transform.Find ("PowerMeter").transform;
+		GameObject.Find ("HUD").transform.Find ("PowerMeter").transform.Find ("Image").GetComponent<Image>().sprite = abilityObject.transform.Find ("Image").GetComponent<Image>().sprite;
+		ability.player = this;
+	}
+	
+	public float AbilityCooldownRatio(){
+		return(ability.abilityCooldown / ability.maxAbilityCooldown);
 	}
 	
 	// Update is called once per frame
@@ -57,14 +65,13 @@ public class Tank : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButton(1)){
-			Teleport();
+			ability.Fire();
 		}
 		
 		if(timeSinceLastEat > 2){
 			UpdateFoodMeter (-Time.deltaTime/50);
 		}
 		
-		teleportCooldown += Time.deltaTime;
 		
 		Vector3 newPosition = transform.position;
 		
@@ -87,21 +94,6 @@ public class Tank : MonoBehaviour {
 //		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
 		
 //		transform.localScale = new Vector3(originalScale.x + foodScale, originalScale.y + foodScale, originalScale.z);
-	}
-	
-	void Teleport(){
-		if(teleportCooldown > maxTeleportCooldown){
-			Vector3 newPosition = transform.position;
-		
-			if(transform.position.y > 0){
-				newPosition.y -= 1.5f;
-			}else{
-				newPosition.y += 1.5f;
-			}
-			
-			transform.position = newPosition;
-			teleportCooldown = 0;
-		}
 	}
 	
 	public void TakeHit(){

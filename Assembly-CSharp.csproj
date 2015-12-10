@@ -76,6 +76,7 @@
      <Compile Include="Assets\PointsHUD.cs" />
      <Compile Include="Assets\PowerMeterHUD.cs" />
      <Compile Include="Assets\Road.cs" />
+     <Compile Include="Assets\Skeleporter.cs" />
      <Compile Include="Assets\Tank.cs" />
      <Compile Include="Assets\TreasureGhost.cs" />
      <Compile Include="Assets\TreasureReticle.cs" />

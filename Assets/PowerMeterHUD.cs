@@ -3,8 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PowerMeterHUD : MonoBehaviour {
-
-
 	Image filler;
 
 	// Use this for initialization
@@ -14,6 +12,6 @@ public class PowerMeterHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		filler.fillAmount = Tank.tank.teleportCooldown / Tank.tank.maxTeleportCooldown;
+		filler.fillAmount = Tank.tank.AbilityCooldownRatio();
 	}
 }
