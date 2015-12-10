@@ -66,7 +66,6 @@ public class Road : MonoBehaviour {
 			baddieCount = 30;
 		}
 		for(int i = 0; i < baddieCount; i++){
-			print ("spawn baddie");
 			Vector3 newPosition = transform.position;
 			float xFactor = XRange();
 			newPosition.x += SPAWN_CENTER_OFFSET + xFactor;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-interface IAbility {
+public interface IAbility {
 	
 	void Fire();
 	

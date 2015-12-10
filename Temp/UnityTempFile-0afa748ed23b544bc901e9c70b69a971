@@ -100,6 +100,8 @@
 'Assets/GameController.cs'
 'Assets/HealthMeter.cs'
 'Assets/IAbility.cs'
+'Assets/IPowerUp.cs'
+'Assets/LifeUp.cs'
 'Assets/LoadMarker.cs'
 'Assets/ObstacleBear.cs'
 'Assets/PlayerCamera.cs'

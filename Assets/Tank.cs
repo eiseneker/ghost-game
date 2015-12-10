@@ -21,7 +21,7 @@ public class Tank : MonoBehaviour {
 	public static float foodMeter;
 	private Vector3 originalScale;
 	private float timeSinceLastEat;
-	private IAbility ability;
+	public IAbility ability;
 
 	// Use this for initialization
 	void Start () {
@@ -30,13 +30,12 @@ public class Tank : MonoBehaviour {
 		points = 0;
 		originalScale = transform.localScale;
 		foodMeter = 0;
-		GameObject abilityObject = Instantiate (Resources.Load ("Stopwatch"), transform.position, Quaternion.identity) as GameObject;
-		abilityObject.transform.parent = GameObject.Find ("HUD").transform.Find ("PowerMeter").transform;
-		GameObject.Find ("HUD").transform.Find ("PowerMeter").transform.Find ("Image").GetComponent<Image>().sprite = abilityObject.transform.Find ("Image").GetComponent<Image>().sprite;
-		
-		ability = abilityObject.GetComponent(typeof(IAbility)) as IAbility;
-		
+	}
+	
+	public void SetAbility(IAbility newAbility){
+		ability = newAbility;
 		ability.SetPlayer(this);
+		PowerMeterHUD.instance.gameObject.SetActive (true);
 	}
 	
 	public float AbilityCooldownRatio(){
