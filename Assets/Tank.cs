@@ -21,7 +21,7 @@ public class Tank : MonoBehaviour {
 	public static float foodMeter;
 	private Vector3 originalScale;
 	private float timeSinceLastEat;
-	private Skeleporter ability;
+	private Stopwatch ability;
 
 	// Use this for initialization
 	void Start () {
@@ -30,8 +30,8 @@ public class Tank : MonoBehaviour {
 		points = 0;
 		originalScale = transform.localScale;
 		foodMeter = 0;
-		GameObject abilityObject = Instantiate (Resources.Load ("Skeleporter"), transform.position, Quaternion.identity) as GameObject;
-		ability = abilityObject.GetComponent<Skeleporter>();
+		GameObject abilityObject = Instantiate (Resources.Load ("Stopwatch"), transform.position, Quaternion.identity) as GameObject;
+		ability = abilityObject.GetComponent<Stopwatch>();
 		abilityObject.transform.parent = GameObject.Find ("HUD").transform.Find ("PowerMeter").transform;
 		GameObject.Find ("HUD").transform.Find ("PowerMeter").transform.Find ("Image").GetComponent<Image>().sprite = abilityObject.transform.Find ("Image").GetComponent<Image>().sprite;
 		ability.player = this;
@@ -45,7 +45,7 @@ public class Tank : MonoBehaviour {
 	void Update () {
 		timeSinceLastEat += Time.deltaTime;
 		hitDelay += Time.deltaTime;
-		pointsDelay += Time.deltaTime;
+		pointsDelay += Time.deltaTime * GameController.actionTimeScale;
 		
 		myRigidBody.AddForce(new Vector2(10, 0));
 		
@@ -89,7 +89,7 @@ public class Tank : MonoBehaviour {
 		
 		transform.position = newPosition;
 		
-		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4);
+		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4 * GameController.actionTimeScale);
 		
 //		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
 		

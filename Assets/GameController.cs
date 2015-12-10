@@ -7,11 +7,13 @@ public class GameController : MonoBehaviour {
 	public static bool active;
 	private float baddySpawnTime;
 	private float foodSpawnTime;
+	public static float actionTimeScale = 1;
 
 	// Use this for initialization
 	void Start () {
 		active = true;
 		playTime = 0;
+		actionTimeScale = 1;
 	}
 	
 	// Update is called once per frame
