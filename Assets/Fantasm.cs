@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Impulse : MonoBehaviour, IAbility {
+public class Fantasm : MonoBehaviour, IAbility {
 	
 	public float maxAbilityCooldown = 4;
 	public float abilityCooldown;

@@ -98,8 +98,10 @@ public class Tank : MonoBehaviour {
 		
 		if(!powerSet && PowerMeterHUD.instance != null){
 			powerSet = true;
-			GameObject treasureObject = Instantiate (Resources.Load ("Impulse"), transform.position, Quaternion.identity) as GameObject;
+			GameObject treasureObject = Instantiate (Resources.Load ("Fantasm"), transform.position, Quaternion.identity) as GameObject;
 			IAbility ability = treasureObject.GetComponent(typeof(IAbility)) as IAbility;
+			treasureObject.transform.parent = GameObject.Find ("HUD").transform.Find ("PowerMeter").transform;
+			GameObject.Find ("HUD").transform.Find ("PowerMeter").transform.Find ("Image").GetComponent<Image>().sprite = treasureObject.transform.Find ("Image").GetComponent<Image>().sprite;
 			SetAbility(ability);
 		}
 		
