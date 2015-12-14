@@ -22,6 +22,9 @@ public class Tank : MonoBehaviour {
 	private Vector3 originalScale;
 	private float timeSinceLastEat;
 	public IAbility ability;
+	public float maxVelocity = 3.5f;
+	private bool powerSet;
+	public float xVelocity = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +33,7 @@ public class Tank : MonoBehaviour {
 		points = 0;
 		originalScale = transform.localScale;
 		foodMeter = 0;
+		
 	}
 	
 	public void SetAbility(IAbility newAbility){
@@ -48,7 +52,7 @@ public class Tank : MonoBehaviour {
 		hitDelay += Time.deltaTime;
 		pointsDelay += Time.deltaTime * GameController.actionTimeScale;
 		
-		myRigidBody.AddForce(new Vector2(10, 0));
+		myRigidBody.AddForce(new Vector2(xVelocity, 0));
 		
 		
 		
@@ -59,10 +63,10 @@ public class Tank : MonoBehaviour {
 		
 //		float newGravityScale = foodMeter/4;
 		
-		myRigidBody.gravityScale = 2f;
+		myRigidBody.gravityScale = .2f;
 		
 		if(Input.GetMouseButton(0)){
-			myRigidBody.AddForce (new Vector2(0, 50));
+			myRigidBody.AddForce (new Vector2(0, 5));
 		}
 		
 		if(Input.GetMouseButton(1)){
@@ -90,7 +94,14 @@ public class Tank : MonoBehaviour {
 		
 		transform.position = newPosition;
 		
-		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, 4 * GameController.actionTimeScale);
+		myRigidBody.velocity = Vector2.ClampMagnitude(myRigidBody.velocity, maxVelocity * GameController.actionTimeScale);
+		
+		if(!powerSet && PowerMeterHUD.instance != null){
+			powerSet = true;
+			GameObject treasureObject = Instantiate (Resources.Load ("Impulse"), transform.position, Quaternion.identity) as GameObject;
+			IAbility ability = treasureObject.GetComponent(typeof(IAbility)) as IAbility;
+			SetAbility(ability);
+		}
 		
 //		float foodScale = Mathf.Round(foodMeter/5 * 100f) / 100f;
 		

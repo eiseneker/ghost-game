@@ -45,6 +45,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Acorn.cs" />
      <Compile Include="Assets\Aura.cs" />
      <Compile Include="Assets\Baddie.cs" />
      <Compile Include="Assets\DifficultyHUD.cs" />
@@ -70,8 +71,10 @@
      <Compile Include="Assets\FoodHUD.cs" />
      <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\HealthMeter.cs" />
+     <Compile Include="Assets\Hummingbird.cs" />
      <Compile Include="Assets\IAbility.cs" />
      <Compile Include="Assets\IPowerUp.cs" />
+     <Compile Include="Assets\Impulse.cs" />
      <Compile Include="Assets\LifeUp.cs" />
      <Compile Include="Assets\LoadMarker.cs" />
      <Compile Include="Assets\ObstacleBear.cs" />
