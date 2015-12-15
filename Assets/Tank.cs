@@ -73,7 +73,7 @@ public class Tank : MonoBehaviour {
 			ability.Fire();
 		}
 		
-		if(timeSinceLastEat > 2){
+		if(timeSinceLastEat > 4){
 			UpdateFoodMeter (-Time.deltaTime/50);
 		}
 		
@@ -119,7 +119,7 @@ public class Tank : MonoBehaviour {
 	
 	public void EatFood(){
 		points += 10;
-		UpdateFoodMeter (.01f);
+		UpdateFoodMeter (.05f);
 		timeSinceLastEat = 0;
 	}
 	

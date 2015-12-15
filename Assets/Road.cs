@@ -17,7 +17,7 @@ public class Road : MonoBehaviour {
 		loadMarker.road = this;
 		SpawnObstacles();
 		SpawnFoods();
-//		SpawnTreasure();
+		SpawnTreasure();
 		SpawnBaddies();
 	}
 	

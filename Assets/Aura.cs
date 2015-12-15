@@ -20,13 +20,9 @@ public class Aura : MonoBehaviour {
 	
 	void OnTriggerStay2D(Collider2D collider){
 		if(owner != null){
-			if(collider.GetComponent<TreasureGhost>()){
-				MoveMe (null);
-			}else{
-				Aura aura = collider.GetComponent<Aura>();
-				if(aura && this.canBeMoved && aura.movedBy != this){
-					MoveMe (aura);	
-				}
+			Aura aura = collider.GetComponent<Aura>();
+			if(aura && this.canBeMoved && aura.movedBy != this){
+				MoveMe (aura);	
 			}
 		}
 	}
