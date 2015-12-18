@@ -29,11 +29,9 @@ public class GameController : MonoBehaviour {
 			ShowGameOver();
 		}
 		
-		if(Tank.tank.transform.position.y < -1.5f){
-			print ("situation A");
+		if(Tank.tank.transform.position.y < -2f){
 			bearTime += Time.deltaTime;
 		}else{
-			print ("situation B");
 			bearTime = 0;
 		}
 		

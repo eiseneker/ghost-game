@@ -21,7 +21,7 @@ public class ObstacleBear : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(transform.position.y < -1){
+		if(transform.position.y < -1.25f){
 			transform.Translate (Vector3.up * Time.deltaTime * 2f * GameController.actionTimeScale);
 		}
 		transform.Translate (Vector3.left * Time.deltaTime * 2f * GameController.actionTimeScale);
